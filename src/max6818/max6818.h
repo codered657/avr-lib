@@ -8,33 +8,40 @@
  *
  *  Revision History:
  *     12/01/2012   Steven Okai     Initial revision.
- *
+ *     12/21/2012   Shir Aharon     Include guard, alignment
  *
  */
 
+// Include guard
+#ifndef __MAX6818__
+#define __MAX6818__
+
 typedef struct {
-    
+
     // Pointer to key input port
     uint8_t *keysInPort;
-    
+
     // Pointer to key interrupt port
     uint8_t *keyInterruptPort;
-    
+
     // Pointer to keypad acknowledge port
     uint8_t *keyAckPort;
-    
+
     // Bit pattern for acknowledging keypad read
     uint8_t ackPortBit;
-    
+
     // Key available flag
     uint8_t keyAvailable;
-    
+
     // Debounced key
     uint8_t debouncedKey;
-    
+
 } Keypad;
 
-void InitKeypad(Keypad *keypad, uint8_t *keysInPort, uint8_t *keyInterruptPort, uint8_t intPin, uint8_t *keyAckPort, uint8_t ackPin);
+void InitKeypad(Keypad *keypad, uint8_t *keysInPort, uint8_t *keyInterruptPort,
+                uint8_t intPin, uint8_t *keyAckPort, uint8_t ackPin);
 void ReadKeypad(Keypad *keypad);
 uint8_t KeyAvailable(Keypad *keypad);
 uint8_t GetKey(Keypad *keypad);
+
+#endif // __MAX6818__
